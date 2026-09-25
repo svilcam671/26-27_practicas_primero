@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__) . "/cabecera.php");
+include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
 
 //$usuario=getenv("MYSQL_USER");
@@ -8,7 +8,7 @@ include_once(dirname(__FILE__) . "/cabecera.php");
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("Pruebas basicas");
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -21,9 +21,11 @@ function cabecera()
 function cuerpo()
 {
 ?>
-    <br><br>
-    Hola, estás en Index.php
-    Modificacion
+    <br><br>Esto es html
     <a href="../aplicacion/pruebas/index.php">a</a>
+    <?php
+        echo "asasdasd";
+    ?>
+
 <?php
 }
