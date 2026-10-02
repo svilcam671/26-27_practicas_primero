@@ -67,6 +67,7 @@ function inicioCuerpo($cabecera)
                 <ul>
                     <li><a href="/index.php">Inicio</a></li>
                     <li><a href="/aplicacion/pruebas/basicas.php">Ejemplos Basicos</a></li>
+                    <li><a href="/aplicacion/relacion1/index.php">Indice relacion 1</a></li>
                  </ul> 
                 
             </div>
