@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . "/cabecera.php");
 //$usuario=getenv("MYSQL_USER");
 
 //dibuja la plantilla de la vista
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+inicioCabecera("Mi Aplicacion");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION");
@@ -15,7 +15,13 @@ finCuerpo();
 
 //vista
 function cabecera() 
-{}
+{
+
+    ?>
+    <!-- Esto va en el head -->
+    <?php
+
+}
 
 //vista
 function cuerpo()
