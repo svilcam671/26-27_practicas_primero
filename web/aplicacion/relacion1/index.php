@@ -18,7 +18,7 @@ function cuerpo()
     <br><br>
     Ejercicios Relacion 1
     <br><br>
-    <a href="">Ejercicio 1</a>
+    <a href="./ejercicio1.php">Ejercicio 1</a>
     <br><br>
     <a href="">Ejercicio 2</a>
     <br><br>
