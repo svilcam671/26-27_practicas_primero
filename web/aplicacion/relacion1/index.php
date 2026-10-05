@@ -20,9 +20,9 @@ function cuerpo()
     <br><br>
     <a href="./ejercicio1.php">Ejercicio 1</a>
     <br><br>
-    <a href="">Ejercicio 2</a>
+    <a href="./ejercicio2.php">Ejercicio 2</a>
     <br><br>
-    <a href="">Ejercicio 3</a>
+    <a href="./ejercicio3.php">Ejercicio 3</a>
     <br><br>
     <a href="">Ejercicio 4</a>
     <br><br>
