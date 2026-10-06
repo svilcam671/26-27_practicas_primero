@@ -186,8 +186,31 @@ function cuerpo()
             case 3: $cadena="otro"; 
         }
 
+        $miArray[3]=23;
+        $miArray[7]=1234;
+        $miArray[]=54;
+        $miArray[]=22;
 
+        //$total = $miArray[6];
 
+        $final=count($miArray);
+        for ($i=0;$i<$final;$i++) {
+
+            if (isset($miArray[$i])) {
+                $total += $miArray[$i];
+            }
+            else {
+                $final++;
+            }
+        }
+
+        $miArray["nueva"]=18;
+        $total=0;
+        $total1=0;
+        foreach($miArray as $i => $valor) {
+            $total+=$miArray[$i];
+            $total1+=$valor;
+        }
 
     ?>
 
