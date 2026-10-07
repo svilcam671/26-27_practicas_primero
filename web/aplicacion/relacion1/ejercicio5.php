@@ -31,25 +31,34 @@ function cabecera() {
 //vista
 function cuerpo(array $vector) {
 
-    for ($i = 0; $i<count($vector);$i++) {
+    foreach ($vector as $pos => $valor) {
+        
+        $tipo = gettype($valor);
 
-        echo "Posicion ".$i." contenido: ";
-
-        if (gettype($vector[$i]) == []) {
-
-            foreach($vector[$i] as $elem) {
-
-                echo $elem.", ";
+        echo "posicion ".$pos." contenido ($tipo) ";
+        
+        if ($tipo == "array") {
+            echo "<br>";
+            foreach ($valor as $elem) {
+                echo "- ".$elem."<br>";
             }
         }
-        else if (gettype($vector[$i]) == "integer") {
-            
-            echo "Entero con valor ".intval($vector[$i]).", en binario ".decbin($vector[$i]);
+        else if ($tipo == "integer") {
+            echo "Entero con valor ".$valor. ", en binario ".decbin($valor)."<br>";
+
         }
-        else if (gettype($vector[$i]) == "integer") {
-            
-            echo "Entero con valor ".intval($vector[$i]).", en binario ".decbin($vector[$i]);
+        else if ($tipo == "double") {
+            echo $valor." que al cuadrado es ".pow($valor,2)."<br>";
         }
+        else if ($tipo == "string") {
+            echo "-".$valor."-<br>";
+        }
+        else if ($tipo == "boolean") {
+            $val = $valor?"true":"false";
+            $opuesto = !$valor?"true":"false";
+            echo $val." y su opuesto ".$opuesto."<br>";
+        }
+
     }
 
 
