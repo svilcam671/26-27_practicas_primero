@@ -13,10 +13,10 @@ $vector[56]=23;
 
 //datos
 
-inicioCabecera("Ejercicio 4");
+inicioCabecera("Ejercicio 5");
 cabecera();
 finCabecera();
-inicioCuerpo("Ejercicio 4 Array con bucles for");
+inicioCuerpo("Ejercicio 5 Array con diferentes datos");
 cuerpo($vector);
 finCuerpo();
 // *******************************************
