@@ -12,6 +12,7 @@ $resultadoWhile = [0,0,0,0,0,0];
 $resultadoFor = [];
 $cont = 0;
 
+//Bucle for para generar las tiradas 
 for ($i = 0; $i < 6; $i++) {
     $resultadoFor[$i] = mt_rand(1,6);
 }

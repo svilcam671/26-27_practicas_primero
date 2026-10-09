@@ -226,6 +226,9 @@ function cuerpo()
             $total1+=$valor;
         }
 
+
+        
+
     ?>
 
 <?php
