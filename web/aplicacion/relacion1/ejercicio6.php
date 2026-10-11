@@ -51,11 +51,11 @@ function cuerpo($vector) {
 
         // simular foreach usando las funciones de recorrido key, current y next
         // mientras la clave no sea nula
-        while(key($vector)!=null) {
+        while(key($vector)!==null) {
             echo "Clave: ".key($vector)." con valor: ";
 
             // comprobamos si es boolean para mostrarlo como true o false en vez de 1 o 0
-            if (current($vector) == "boolean") {
+            if (is_bool(current($vector))) {
                 echo (current($vector)?"true":"false")."<br>";
             }
             else {
@@ -79,7 +79,7 @@ function cuerpo($vector) {
         for ($i = 0; $i < count($claves); $i++) {
             echo "Clave: ".$claves[$i]." con valor: ";
 
-            if ($valores[$i] == "boolean") {
+            if (is_bool($valores[$i])) {
                 echo ($valores[$i]?"true":"false")."<br>";
             }
             else {

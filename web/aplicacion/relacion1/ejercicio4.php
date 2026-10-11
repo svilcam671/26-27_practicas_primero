@@ -1,19 +1,19 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
-$barra=[
+$barra = [
     [
-        "TEXTO"=> "Inicio",
-        "ENLACE"=> "/index.php",
+        "TEXTO" => "Inicio",
+        "ENLACE" => "/index.php",
         "ADICIONAL" => " >> "
-        ],
-        [
-        "TEXTO"=> "Indice R1",
+    ],
+    [
+        "TEXTO" => "Indice R1",
         "ENLACE" => "/aplicacion/relacion1/index.php",
         "ADICIONAL" => " >> "
     ],
     [
-        "TEXTO"=> "Ejercicio4",
+        "TEXTO" => "Ejercicio4",
         "ADICIONAL" => " >> "
     ],
 ];
@@ -25,6 +25,31 @@ const FILAS = 5;
 $arrayFor = [];
 $arrayconst = [];
 
+// bucle for para generar la piramide y guardarla en el arrayfor
+for ($i = 1; $i <= 5; $i++) {
+
+    $fila = [];
+
+    //generar los numeros de cada fila y guardarlos en el arrayfor
+    for ($j = 1; $j <= $i; $j++) {
+
+        $fila[] = $i;
+    }
+    $arrayFor[] = $fila;
+}
+
+// bucle for para generar la piramide usando la constante FILAS y guardarlo en arrayconst
+for ($i = 1; $i <= FILAS; $i++) {
+
+    $fila = [];
+    //generar los numeros de cada fila y guardarlos en el arrayconst
+    for ($j = 1; $j <= $i; $j++) {
+
+        $fila[] = $i;
+    }
+    $arrayconst[] = $fila;
+}
+
 inicioCabecera("Ejercicio 4");
 cabecera();
 finCabecera();
@@ -34,75 +59,44 @@ finCuerpo();
 // *******************************************
 
 //vista
-function cabecera() {
-
-}
+function cabecera() {}
 
 
 
 //vista
-function cuerpo(array $arrayFor, array $arrayconst) {
+function cuerpo(array $arrayFor, array $arrayconst)
+{
 ?>
 
     <h2>Generar array y mostrarlo con foreach</h2>
     <?php
 
-    // bucle for para generar la piramide y guardarla en el arrayfor
-        for ($i = 1; $i <= 5; $i++) {
-           
-            $fila = [];
+    // foreach para mostrar la piramide guardada en arrayfor recorriendo la matriz
+    foreach ($arrayFor as $elem) {
+        if (is_array($elem)) {
 
-            //generar los numeros de cada fila y guardarlos en el arrayfor
-            for ($j = 1; $j <= $i; $j++) {
-
-                $fila[] = $i;
-
-            }
-            $arrayFor[]=$fila;
-
-        }
-
-        // foreach para mostrar la piramide guardada en arrayfor recorriendo la matriz
-        foreach ($arrayFor as $elem) {
-            if (is_array($elem)) {
-                
-                foreach ($elem as $n) {
+            foreach ($elem as $n) {
                 echo $n;
-                }
-
             }
-            echo "<br>";
         }
+        echo "<br>";
+    }
 
     ?>
-    
+
     <h2>Generar array y mostrarlo con foreach con constante FILAS</h2>
     <?php
-    // bucle for para generar la piramide usando la constante FILAS y guardarlo en arrayconst
-        for ($i = 1; $i <= FILAS; $i++) {
-           
-            $fila = [];
-            //generar los numeros de cada fila y guardarlos en el arrayconst
-            for ($j = 1; $j <= $i; $j++) {
 
-                $fila[] = $i;
+    // foreach para mostrar la piramide guardada en arrayconst recorriendo la matriz
+    foreach ($arrayconst as $elem) {
+        if (is_array($elem)) {
 
-            }
-            $arrayconst[]=$fila;
-
-        }
-
-        // foreach para mostrar la piramide guardada en arrayconst recorriendo la matriz
-        foreach ($arrayconst as $elem) {
-            if (is_array($elem)) {
-                
-                foreach ($elem as $n) {
+            foreach ($elem as $n) {
                 echo $n;
-                }
-
             }
-            echo "<br>";
         }
+        echo "<br>";
+    }
 
     ?>
 

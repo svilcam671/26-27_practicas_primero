@@ -76,6 +76,10 @@ body {
     background-color: #d6dbdf;
 }
 
+#imgInicio {
+    width: 15%;
+}
+
 .boton{
     background-color: blue;
     color:white;

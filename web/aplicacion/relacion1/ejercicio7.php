@@ -100,7 +100,7 @@ function cuerpo(array $dias, array $meses) {
 
     ?>
 
-    <h2>Fechas con Date</h2>
+    <h2>Fechas con DateTime</h2>
     <?php
 
     // datetime() sin parametros para la fecha actual
