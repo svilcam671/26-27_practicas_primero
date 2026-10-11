@@ -1,7 +1,22 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
-
+$barra=[
+    [
+        "TEXTO"=> "Inicio",
+        "ENLACE"=> "/index.php",
+        "ADICIONAL" => " >> "
+        ],
+        [
+        "TEXTO"=> "Indice R1",
+        "ENLACE" => "/aplicacion/relacion1/index.php",
+        "ADICIONAL" => " >> "
+    ],
+    [
+        "TEXTO"=> "Ejercicio2",
+        "ADICIONAL" => " >> "
+    ],
+];
 //datos
 
 //constante
@@ -17,6 +32,7 @@ for ($i = 0; $i < 6; $i++) {
     $resultadoFor[$i] = mt_rand(1,6);
 }
 
+//Bucle while para las tiradas y contar el numero
 while ($cont < N) {
     
     $valor =  mt_rand(1,6);
@@ -39,7 +55,7 @@ while ($cont < N) {
 inicioCabecera("Ejercicio 2");
 cabecera();
 finCabecera();
-inicioCuerpo("Ejercicio 2 Simular un dado");
+inicioCuerpo("Ejercicio 2 Simular un dado", $barra);
 cuerpo($resultadoFor, $resultadoWhile);
 finCuerpo();
 // *******************************************
@@ -60,11 +76,13 @@ function cuerpo(array $resultadoFor, array $resultadoWhile) {
     <h2>LANZAMIENTO DE UN DADO</h2>
     <?php
 
+        //mostrar las tiradas del bucle for
         for ($i = 0; $i < count($resultadoFor) ; $i++) {
             echo "Lanzamiento ".($i+1)." del dado: $resultadoFor[$i]"."<br>";
         }
 
 
+        //mostrar los datos de las tiradas del bucle while
         echo "<br><br>";
         echo "el 1 ha salido $resultadoWhile[0] con un porcentaje de ".($resultadoWhile[0]*100)/N."%";
         echo "<br>el 2 ha salido $resultadoWhile[1] con un porcentaje de ".($resultadoWhile[1]*100)/N."%";

@@ -1,7 +1,22 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
-
+$barra=[
+    [
+        "TEXTO"=> "Inicio",
+        "ENLACE"=> "/index.php",
+        "ADICIONAL" => " >> "
+        ],
+        [
+        "TEXTO"=> "Indice R1",
+        "ENLACE" => "/aplicacion/relacion1/index.php",
+        "ADICIONAL" => " >> "
+    ],
+    [
+        "TEXTO"=> "Ejercicio3",
+        "ADICIONAL" => " >> "
+    ],
+];
 //datos
 //- Hacer lo anterior creando y rellenando el array usando varias sentencias. 
 // a) Crear una variable de tipo array.
@@ -50,7 +65,7 @@ $array3 = [
 inicioCabecera("Ejercicio 3");
 cabecera();
 finCabecera();
-inicioCuerpo("Ejercicio 3 Array");
+inicioCuerpo("Ejercicio 3 Array", $barra);
 cuerpo($array, $array2, $array3);
 finCuerpo();
 // *******************************************
@@ -66,9 +81,12 @@ function cabecera() {
 function cuerpo(array $array,array $array2,array $array3) {
 ?>
 
+    
     <h2>Primer array con diferentes sentencias</h2>
+    
     <?php
 
+    //bucles foreach para visualizar los arrays
         foreach ($array as $elem => $valor) {
             if (is_array($valor)) {
                 

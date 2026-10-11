@@ -4,15 +4,18 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 $barra=[
     [
-        "TEXTO"=> "inicio",
+        "TEXTO"=> "Inicio",
         "ENLACE"=> "/index.php",
+        "ADICIONAL" => " >> "
         ],
         [
         "TEXTO"=> "pruebas",
-        "ENLACE" => "/aplicacion/pruebas/index.php"
+        "ENLACE" => "/aplicacion/pruebas/index.php",
+        "ADICIONAL" => " >> "
     ],
     [
         "TEXTO"=> "eje. basicas",
+        "ADICIONAL" => " >> "
     ],
 ];
 

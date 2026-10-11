@@ -4,11 +4,13 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 $barra=[
     [
-        "TEXTO"=> "inicio",
+        "TEXTO"=> "Inicio",
         "ENLACE"=> "/index.php",
+        "ADICIONAL" => " >> "
         ],
         [
-        "TEXTO"=> "pruebas"
+        "TEXTO"=> "pruebas",
+        "ADICIONAL" => " >> "
     ],
 ];
 //dibuja la plantilla de la vista

@@ -3,16 +3,17 @@ include_once(dirname(__FILE__) . "/cabecera.php");
 //controlador
 $barra=[
     [
-        "TEXTO"=> "inicio",
+        "TEXTO"=> "Inicio",
         "ENLACE"=> "/index.php",
-        "ADICIONAL" => ">>"],
-        [
+        "ADICIONAL" => ">>"
+        ],
+        /*[
         "TEXTO"=> "otro",
     ],
     [
         "TEXTO"=> "index",
         "ADICIONAL" => "&copy;&copy;"
-    ]
+    ]*/
 ];
 
 //$usuario=getenv("MYSQL_USER");
@@ -42,7 +43,7 @@ function cuerpo()
 ?>
     <br><br>
     Hola, estás en Index.php
-    Modificacion
-    <a href="../aplicacion/pruebas/index.php">a</a>
+    Pruebas Basicas 
+    <a href="../aplicacion/pruebas/index.php">Pruebas basicas</a>
 <?php
 }
