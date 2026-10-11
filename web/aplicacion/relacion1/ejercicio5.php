@@ -1,7 +1,5 @@
 <?php
 
-use function PHPSTORM_META\type;
-
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 $barra=[
     [
