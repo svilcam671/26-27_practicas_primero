@@ -55,7 +55,7 @@ function cuerpo(array $vector) {
         echo "posicion ".$pos." contenido ($tipo) ";
         
         //comprobar si es un array para recorrerlo y mostrar sus valores
-        if ($tipo == "array") {
+        if (is_array($tipo)) {
             echo "<br>";
             foreach ($valor as $elem) {
                 echo "- ".$elem."<br>";
@@ -63,23 +63,23 @@ function cuerpo(array $vector) {
         }
 
         //comprobar si es un entero para mostrarlo y mostrar el valor en binario
-        else if ($tipo == "integer") {
+        else if (is_integer($tipo)) {
             echo "Entero con valor ".$valor. ", en binario ".decbin($valor)."<br>";
 
         }
 
         //comprobar si es un real para mostrarlo y ver su valor al cuadrado
-        else if ($tipo == "double") {
+        else if (is_float($tipo)) {
             echo $valor." que al cuadrado es ".pow($valor,2)."<br>";
         }
 
         //comprobar si es un string y mostrarla entre guiones
-        else if ($tipo == "string") {
+        else if (is_string($tipo)) {
             echo "-".$valor."-<br>";
         }
 
         //comprobar si es un boolean y mostrarlo (en texto) junto a su opuesto
-        else if ($tipo == "boolean") {
+        else if (is_bool($tipo)) {
             $val = $valor?"true":"false";
             $opuesto = !$valor?"true":"false";
             echo $val." y su opuesto ".$opuesto."<br>";

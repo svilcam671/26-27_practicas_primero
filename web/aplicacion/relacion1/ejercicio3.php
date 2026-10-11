@@ -88,15 +88,15 @@ function cuerpo(array $array, array $array2, array $array3)
     //bucles foreach para visualizar los arrays
     foreach ($array as $elem => $valor) {
         if (is_array($valor)) {
-            echo "Clave: " . $elem . " | Valor: ";
+            echo "Clave: ".$elem." | Valor: ";
             foreach ($valor as $a) {
-                echo $a . " - ";
+                echo $a." - ";
             }
             echo "<br>";
         } else if (is_bool($valor)) {
-            echo "Clave: " . $elem . " | Valor: " . ($valor ? "true" : "false") . "<br>";
+            echo "Clave: ".$elem." | Valor: ".($valor?"true":"false")."<br>";
         } else {
-            echo "Clave: " . $elem . " | Valor: " . $valor . "<br>";
+            echo "Clave: ".$elem." | Valor: ".$valor."<br>";
         }
     }
 
@@ -107,15 +107,15 @@ function cuerpo(array $array, array $array2, array $array3)
 
     foreach ($array2 as $elem => $valor) {
         if (is_array($valor)) {
-            echo "Clave: " . $elem . " | Valor: ";
+            echo "Clave: ".$elem." | Valor: ";
             foreach ($valor as $a) {
-                echo $a . " - ";
+                echo $a." - ";
             }
             echo "<br>";
         } else if (is_bool($valor)) {
-            echo "Clave: " . $elem . " | Valor: " . ($valor ? "true" : "false") . "<br>";
+            echo "Clave: ".$elem." | Valor: ".($valor?"true":"false")."<br>";
         } else {
-            echo "Clave: " . $elem . " | Valor: " . $valor . "<br>";
+            echo "Clave: ".$elem." | Valor: ".$valor."<br>";
         }
     }
 
@@ -126,15 +126,15 @@ function cuerpo(array $array, array $array2, array $array3)
 
     foreach ($array3 as $elem => $valor) {
         if (is_array($valor)) {
-            echo "Clave: " . $elem . " | Valor: ";
+            echo "Clave: ".$elem." | Valor: ";
             foreach ($valor as $a) {
-                echo $a . " - ";
+                echo $a." - ";
             }
             echo "<br>";
         } else if (is_bool($valor)) {
-            echo "Clave: " . $elem . " | Valor: " . ($valor ? "true" : "false") . "<br>";
+            echo "Clave: ".$elem." | Valor: ".($valor?"true":"false")."<br>";
         } else {
-            echo "Clave: " . $elem . " | Valor: " . $valor . "<br>";
+            echo "Clave: ".$elem." | Valor: ".$valor."<br>";
         }
     }
 
