@@ -37,54 +37,67 @@ function cuerpo() {
 
 $cadena = "Está la niña en casa";
 $cadBytes = strlen($cadena);
-$cadMB = mb_strlen($cadena, "UTF-8");
+$cadMB = mb_strlen($cadena);
 
 ?>
     <!-- Mostrar cada carácter en una línea separada y con tantos espacios en blanco como me indica la posición del carácter mostrado-->
     <h2>Mostrar cada carácter en una línea separada</h2>
-    <pre>
+    
     <?php 
         
         // prueba [] que no funciona
         /*for ($i = 0; $i < $cadBytes; $i++) {
-            echo str_repeat(" ",$i).$cadena[$i]."\n";
+            echo str_repeat("&nbsp;",$i).$cadena[$i]."<br>";
         }*/
 
         // prueba substr que no funciona
         /*for ($i = 0; $i < $cadBytes; $i++) {
-            echo str_repeat(" ",$i).substr($cadena, $i, 1)."\n";
+            echo str_repeat("&nbsp;",$i).substr($cadena, $i, 1)."<br>";
         }*/
         
         for ($i = 0; $i < $cadMB; $i++) {
-            echo str_repeat(" ",$i).mb_substr($cadena, $i, 1,"UTF-8")."\n";
+            echo str_repeat("&nbsp;",$i).mb_substr($cadena, $i, 1)."<br>";
         }
     ?>
-    </pre>
+    
 
     <h2>Mostrar la cadena en orden inverso</h2>
-    <pre>
     <?php
 
         // hay que empezar el bucle en 1 para el indice negativo
         for ($i = 1; $i <= $cadMB; $i++) {
             
             // indice negativo como pide el enunciado para leer la cadena al reves
-            $caracter = mb_substr($cadena, -$i, 1, "UTF-8");
+            $caracter = mb_substr($cadena, -$i, 1);
 
             // averiguamos si es par o impar
             if (($i - 1) % 2 == 0) {
-                $c = mb_strtoupper($caracter, "UTF-8");
+                $c = mb_strtoupper($caracter);
             }
             else {
-                $c = mb_strtolower($caracter, "UTF-8");
+                $c = mb_strtolower($caracter);
             }
 
             // pintamos los espacios y el caracter
-            echo str_repeat(" ",$i-1).$c."\n";
+            echo str_repeat("&nbsp;",$i-1).$c."<br>";
 
         }
     ?>
-    </pre>
+ 
 
+    <h2>Separa la cadena en partes usando el carácter a</h2>
+    <?php
+        for ($i = 0; $i < $cadMB; $i++) {
+            echo mb_substr($cadena, $i, 1).(mb_substr($cadena, $i, 1) == "a"?"<br>":"");
+        }
+
+    ?>
+
+
+    <h2>Cambia el siguiente carácter a niña por "/mujer "</h2>
+    <?php
+
+
+    ?>
 <?php
 }
