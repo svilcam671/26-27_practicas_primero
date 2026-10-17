@@ -88,6 +88,7 @@ $cadMB = mb_strlen($cadena);
     <h2>Separa la cadena en partes usando el carácter a</h2>
     <?php
         for ($i = 0; $i < $cadMB; $i++) {
+            //recorro la cadena y si encuentro una A le concateno un salto de linea
             echo mb_substr($cadena, $i, 1).(mb_substr($cadena, $i, 1) == "a"?"<br>":"");
         }
 
@@ -97,7 +98,23 @@ $cadMB = mb_strlen($cadena);
     <h2>Cambia el siguiente carácter a niña por "/mujer "</h2>
     <?php
 
+        // con replace
+        echo str_replace("niña ", "niña/mujer ", $cadena);
 
+        echo "<br>";
+
+        // buscando con un bucle la palabra niña y remplazandola
+        for ($i = 0; $i < $cadMB; $i++) {
+            // si encuentro la palabra niña la cambio por niña/mujer y avanzo el bucle 4 posiciones
+            if (mb_substr($cadena, $i, 4) == "niña") {
+                echo "niña/mujer ";
+                $i+=4;
+            }
+            // si no voy sacando caracter a caracter la cadena
+            else {
+                echo mb_substr($cadena, $i, 1);
+            }
+        }
     ?>
 <?php
 }
