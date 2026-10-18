@@ -16,7 +16,7 @@ $barra=[
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION", $barra);
+inicioCuerpo("2DAW APLICACION RELACION 2", $barra);
 cuerpo(); //llamo a la vista
 finCuerpo();
 // **********************************************************
