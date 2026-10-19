@@ -14,25 +14,22 @@ $barra=[
     ],
 ];
 
-// ejercicio 1
-$array = array();
-$numero = 0;
-
-
-
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION RELACION 3", $barra);
-cuerpo($array, $numero); //llamo a la vista
+cuerpo(); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
 function cabecera() {}
 //vista
-function cuerpo(array $array, int $numero)
+function cuerpo()
 {
+// ejercicio 1
+$array = array();
+$numero = 0;
 ?>
    <h2>Prueba Ejercicio 1</h2>
 
@@ -77,6 +74,38 @@ function cuerpo(array $array, int $numero)
         // muestro el numero de llamadas
         echo "Llamada numero: $numero <br>";
 
+    ?>
+
+    <h2>Prueba Ejercicio 2</h2>
+    <?php
+    $cadenaBien = generarCadena();
+        if ($cadenaBien) {
+            echo "La cadena se ha generado correctamente: $cadenaBien";
+        }
+        else {
+            echo "FALSE -> Ha habido algun problema";
+        }
+
+    echo "<br>";
+
+    $cadenaMal = generarCadena(0);
+        if ($cadenaMal) {
+            echo "La cadena se ha generado correctamente: $cadenaMal";
+        }
+        else {
+            echo "FALSE -> Ha habido algun problema";
+        }
+
+    ?>
+
+    <h2>Prueba Ejercicio 3</h2>
+    <?php
+    
+    echo "Prueba Suma (Operando 1) para los numeros 3,4,5,6,7 = ".operaciones(1,3,4,5,6,7);
+    echo "<br>Prueba Resta (Operando 2) para los numeros 100,5,6,7,34 = ".operaciones(2,100,5,6,7,34);
+    echo "<br>Prueba Multiplicacion (Operando 3) para los numeros 4,2,3,5,2 = ".operaciones(3,4,2,3,5,2);
+    echo "<br>Prueba resta de la suma de los pares con los impares (Operando diferente) para los numeros 3,4,5,6,7,8 = ".operaciones(5,3,4,5,6,7,8);
+    
     ?>
 
 <?php

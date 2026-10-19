@@ -160,7 +160,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
             <footer>
                 <hr width="90%" />
                 <div>
-                    &copy; Copyright by Profesor
+                    &copy; Copyright by Sergio
                 </div>
             </footer>
         </div>
