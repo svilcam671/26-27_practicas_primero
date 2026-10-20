@@ -108,5 +108,15 @@ $numero = 0;
     
     ?>
 
+    <h2>Prueba Ejercicio 4</h2>
+    <?php
+    
+    $valor = 5;
+    echo "Los tres parametros: ".devuelve($valor,6,7)." y valor del primer parametro: $valor";
+    echo "<br>Primer parametro unicamente: ".devuelve($valor)." y valor del primer parametro: $valor";
+    echo "<br>Primer y segundo parametro: ".devuelve($valor,8)." y valor del primer parametro: $valor";
+    echo "<br>Primer y ultimo parametro: ".devuelve($valor, num3: 8)." y valor del primer parametro: $valor";
+    ?>
+
 <?php
 }

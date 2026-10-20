@@ -125,8 +125,22 @@ function operaciones(int $numOp, int $num1, int $num2, int ...$resto): int {
         $resultado = $pares-$impares;
 
     }
-
     return $resultado;
+}
 
+/**
+ * Funcion que devuelve el producto de los 3 parametros que recibe. Siendo el primero la suma de los 3
+ * El segundo y tercer parametro son opcionales, si no se indican valdran 4 y 10 respectivamente.
+ *
+ * @param integer $num1 Primer parametro que tiene que ser un entero y que posteriormente sera la suma de los 3 parametros
+ * @param integer|null $num2 segundo parametro opcional con valor por defecto 4
+ * @param integer|null $num3 tercer parametro opcional con valor por defecto 10
+ * @return integer devuelve el producto de los tres paremetros
+ */
+function devuelve(int &$num1, ?int $num2 = 4, ?int $num3 = 10):int{
 
+    $producto = $num1*$num2*$num3;
+    $num1 = $num1+$num2+$num3;
+
+    return $producto;
 }
