@@ -118,5 +118,19 @@ $numero = 0;
     echo "<br>Primer y ultimo parametro: ".devuelve($valor, num3: 8)." y valor del primer parametro: $valor";
     ?>
 
+    <h2>Prueba Ejercicio 5</h2>
+    <?php
+    
+    $res = hacerOperacion("dividir",7,6);
+
+    if ($res === false) {
+        echo "Error: False";
+    }
+    echo "<br>Suma: ".hacerOperacion("suma",7,6);
+    echo "<br>Resta: ".hacerOperacion("resta",7,6);
+    echo "<br>Multiplicacion: ".hacerOperacion("multiplicacion",7,6);
+
+    ?>
+
 <?php
 }

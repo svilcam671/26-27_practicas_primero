@@ -144,3 +144,25 @@ function devuelve(int &$num1, ?int $num2 = 4, ?int $num3 = 10):int{
 
     return $producto;
 }
+
+function suma(int $n1, int $n2) {
+    return $n1 + $n2;
+}
+
+function resta(int $n1, int $n2) {
+    return $n1 - $n2;
+}
+
+function multiplicacion(int $n1, int $n2) {
+    return $n1 * $n2;
+}
+
+function hacerOperacion(string $tipo, int $n1, int $n2):int | false {
+
+    if (in_array($tipo,["suma", "resta", "multiplicacion"])) {
+        return $tipo($n1,$n2);
+    }
+    
+    return false;
+
+}

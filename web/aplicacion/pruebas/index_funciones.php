@@ -31,6 +31,22 @@ if ($numero = doble($numero)) {
     //exit;
 }
 
+$numero = variosParametros(25,"2aaaa769",56);
+$numero = variosParametros(25,"2");
+$numero = variosParametros(25, par3:100);
+
+$func = function(float $a, float $b, float ...$resto):float {
+
+    $res = $a - $b;
+    foreach($resto as $num) {
+        $res += $num;
+    }
+    return $res;
+};
+
+
+
+
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
@@ -47,5 +63,6 @@ function cuerpo(int $n)
 
     echo "El doble del numero es $n".PHP_EOL;
     echo "el numero $n es el doble de otro".PHP_EOL;
+
 
 }
