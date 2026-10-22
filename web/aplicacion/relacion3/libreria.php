@@ -145,18 +145,45 @@ function devuelve(int &$num1, ?int $num2 = 4, ?int $num3 = 10):int{
     return $producto;
 }
 
+/**
+ * Función que recibe dos numeros enteros y realiza la suma de ambos
+ * @param integer $n1 recibe como primer parametro un numero entero
+ * @param integer $n2 recibe como segundo parametro otro numero entero
+ * @return void devuelve la suma de ambos numeros enteros recibidos
+ */
 function suma(int $n1, int $n2) {
     return $n1 + $n2;
 }
 
+/**
+ * Funcion que recibe como parametros dos numeros enteros y realiza la resta de ambos
+ * @param integer $n1 recibe como primer parametro un numero entero
+ * @param integer $n2 recibe como segundo parametro otro numero entero
+ * @return void devuelve la resta de ambos numeros enteros recibidos
+ */
 function resta(int $n1, int $n2) {
     return $n1 - $n2;
 }
 
+/**
+ * Funcion que recibe como parametros dos numeros enteros y realiza el producto de ambos
+ * @param integer $n1 recibe como primer parametro un numero entero
+ * @param integer $n2 recibe como segundo parametro otro numero entero
+ * @return void devuelve el producto de ambos numeros enteros recibidos
+ */
 function multiplicacion(int $n1, int $n2) {
     return $n1 * $n2;
 }
 
+/**
+ * Funcion que recibe como parametros un string y dos numeros enteros. El string indica el tipo de
+ * operación que se va a realizar con los dos numeros enteros como operandos. Devuelve el resultado si 
+ * la operación indicada es correcta o false si hay algun problema.
+ * @param string $tipo se recibe como primer parametro un string que indica el tipo de operacion a realizar llamando a una funcion con el mismo nombre
+ * @param integer $n1 recibe como segundo parametro un numero entero
+ * @param integer $n2 recibe como tercer parametro otro numero entero
+ * @return integer false Devuelve un numero entero resultado de la operacion indicada o false si ha ocurrido algun problema
+ */
 function hacerOperacion(string $tipo, int $n1, int $n2):int | false {
 
     if (in_array($tipo,["suma", "resta", "multiplicacion"])) {
@@ -165,4 +192,17 @@ function hacerOperacion(string $tipo, int $n1, int $n2):int | false {
     
     return false;
 
+}
+
+/**
+ * Funcion que recibe como parametros dos numeros enteros y una funcion callable. Pasa como argumentos
+ * a la funcion los dos numeros enteros y devuelve el resultado.
+ * @param integer $n1 recibe como primer parametro un numero entero
+ * @param integer $n2 recibe como segundo parametro otro numero entero
+ * @param callable $oper como tercer parametro recibe una funcion callable a la que se le pasaran los otros parametros como argumentos para realizar la operacion
+ * @return integer devuelve un numero entero con el resultado de funcion que se pasa como tercer parametro
+ */
+function llamadaAFuncion(int $n1, int $n2, callable $oper):int {
+
+    return $oper($n1,$n2);
 }

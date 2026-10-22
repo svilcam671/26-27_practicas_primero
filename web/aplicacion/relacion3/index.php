@@ -132,5 +132,26 @@ $numero = 0;
 
     ?>
 
+    <h2>Prueba Ejercicio 6</h2>
+    <?php
+    
+    $sumFlecha=fn($n1, $n2) => $n1 + $n2;
+    $resFlecha=fn($n1, $n2) => $n1 - $n2;
+    $mulFlecha=fn($n1, $n2) => $n1 * $n2;
+
+    echo "<br>Suma flecha: ".llamadaAFuncion(6,7,$sumFlecha);
+    echo "<br>Resta flecha: ".llamadaAFuncion(6,7,$resFlecha);
+    echo "<br>Multiplicacion flecha: ".llamadaAFuncion(6,7,$mulFlecha);
+
+    $sumAnon=function(int $n1, int $n2) {return $n1+$n2;};
+    $resAnon=function(int $n1, int $n2) {return $n1-$n2;};
+    $mulAnon=function(int $n1, int $n2) {return $n1*$n2;};
+
+    echo "<br>Suma anonima: ".llamadaAFuncion(8,4,$sumAnon);
+    echo "<br>Resta anonima: ".llamadaAFuncion(8,4,$resAnon);
+    echo "<br>Multiplicacion anonima: ".llamadaAFuncion(8,4,$mulAnon);
+
+    ?>
+
 <?php
 }
