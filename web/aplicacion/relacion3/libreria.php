@@ -157,7 +157,7 @@ function devuelve(int &$num1, ?int $num2 = 4, ?int $num3 = 10):int{
  * @param integer $n2 recibe como segundo parametro otro numero entero
  * @return void devuelve la suma de ambos numeros enteros recibidos
  */
-function suma(int $n1, int $n2) {
+function suma(int $n1, int $n2): int {
     return $n1 + $n2;
 }
 
@@ -167,7 +167,7 @@ function suma(int $n1, int $n2) {
  * @param integer $n2 recibe como segundo parametro otro numero entero
  * @return void devuelve la resta de ambos numeros enteros recibidos
  */
-function resta(int $n1, int $n2) {
+function resta(int $n1, int $n2): int {
     return $n1 - $n2;
 }
 
@@ -177,7 +177,7 @@ function resta(int $n1, int $n2) {
  * @param integer $n2 recibe como segundo parametro otro numero entero
  * @return void devuelve el producto de ambos numeros enteros recibidos
  */
-function multiplicacion(int $n1, int $n2) {
+function multiplicacion(int $n1, int $n2): int {
     return $n1 * $n2;
 }
 
