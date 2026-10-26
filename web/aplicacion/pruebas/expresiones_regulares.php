@@ -1,7 +1,22 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
-
+$barra=[
+    [
+        "TEXTO"=> "Inicio",
+        "ENLACE"=> "/index.php",
+        "ADICIONAL" => " >> "
+        ],
+        [
+        "TEXTO"=> "pruebas",
+        "ENLACE"=> "/aplicacion/pruebas/index.php",
+        "ADICIONAL" => " >> "
+    ],
+    [
+        "TEXTO"=> "Expresiones regulares",
+        "ADICIONAL" => " >> "
+    ],
+];
 //$usuario = getenv("MYSQL_USER");
 
 //datos básicos
@@ -27,7 +42,7 @@ preg_match($exp,$cadena,$resultado,PREG_OFFSET_CAPTURE);
 inicioCabecera("Mi aplicacion");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION INDEX");
+inicioCuerpo("2DAW APLICACION INDEX", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
