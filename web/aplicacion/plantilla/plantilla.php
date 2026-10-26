@@ -72,6 +72,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
                     <li><a href="/aplicacion/pruebas/index.php">Ejemplos Basicos</a></li>
                     <li><a href="/aplicacion/relacion1/index.php">Indice relacion 1</a></li>
                     <li><a href="/aplicacion/relacion2/index.php">Indice relacion 2</a></li>
+                    <li><a href="/aplicacion/relacion3/index.php">Indice relacion 3</a></li>
                 </ul>
 
             </div>
@@ -159,7 +160,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
             <footer>
                 <hr width="90%" />
                 <div>
-                    &copy; Copyright by Profesor
+                    &copy; Copyright by Sergio
                 </div>
             </footer>
         </div>
