@@ -13,24 +13,44 @@ $barra=[
     ],
 ];
 
+// Ejercicio 1
+$violin = new InstrumentoBase("Instrumento de cuerda",5);
+$piano = new InstrumentoBase("Instrumento que consiste en un teclado",12);
+$flauta = new InstrumentoBase("Instrumento de viento que permite tocar notas soplando", 2);
+
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION RELACION 3", $barra);
-cuerpo(); //llamo a la vista
+cuerpo($violin, $piano, $flauta); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
 function cabecera() {}
 //vista
-function cuerpo()
+function cuerpo($violin, $piano, $flauta)
 {
 ?>
    <h2>Prueba Ejercicio 1</h2>
-
     <?php
 
+        try {
+
+            echo "Violin: $violin";
+            echo "<br> Piano: $piano";
+            echo "<br> Flauta: $flauta";
+
+            $flauta->envejecer();
+
+            echo "<br> Flauta: $flauta";
+
+            $violin->hola;
+            
+        }
+        catch (Exception $e) {
+            echo "<br><strong>ERROR: $e</strong>";
+        }
 
     ?>
 
