@@ -129,6 +129,27 @@ $segunda=unica::crear(300);
 
 $ins = new instituto();
 
+// sobrecarga
+
+$clase1 = new claseNormal();
+$clase2 = new claseNormal();
+
+/*$clase1 ->cadena="hola mundo";
+
+if (isset($clase1->cadena))
+        $cad=$clase1->cadena;
+
+if (isset($clase2->cadena))
+        $cad=$clase2->cadena;
+*/
+
+//clase sin sobrecarga
+$clase1=new claseSinSobrecarga();
+
+$clase1->cadena="adios";
+
+
+
 //dibuja la plantilla de la vista
 inicioCabecera("Mi aplicacion");
 cabecera();
