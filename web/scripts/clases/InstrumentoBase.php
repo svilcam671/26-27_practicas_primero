@@ -3,7 +3,7 @@
 /**
  * Clase abstracta InstrumentoBase que tiene las propiedades descripcion y edad de un instrumento, asi como el numero de instancia para saber el numero de objetos creados.
  */
-class InstrumentoBase {
+abstract class InstrumentoBase {
 
     // Variables de instancia
     private string $_descripcion;
@@ -34,22 +34,22 @@ class InstrumentoBase {
      *
      * @return string devuelve una cadena que representa el sonido del instrumento
      */
-    public function sonido() : string {
+    abstract public function sonido() : string;
         
-        return "fiuuuuuuu";
+        //return "fiuuuuuuu";
 
-    }
+    
 
     /**
      * Metodo que devuelve una cadena con los pasos necesarios para afinar el instrumento
      *
      * @return string devuelve un string con los pasos
      */
-    public function afinar() : string {
+    abstract public function afinar() : string;
         
-        return "Paso 1: Coger el instrumento. Paso 2: Revisar el sonido. Paso 3: Afinar con la herramienta adecuada";
+        //return "Paso 1: Coger el instrumento. Paso 2: Revisar el sonido. Paso 3: Afinar con la herramienta adecuada";
 
-    }
+    
 
     /**
      * Metodo que suma un año a la edad del instrumento
@@ -100,19 +100,44 @@ class InstrumentoBase {
 		return $this->_edad;
 	}
 
-    public function __get(string $name) {
-        throw new Exception("No existe la propiedrad $name");
+    /**
+     * Metodo magico get que es llamado de forma automatica cuando se quiere obtener informacion sobre una variable, exista o no, del objeto. 
+     * La redefinimos para que su uso quede deshabilitado devolviendo un error.
+     * @param string $name
+     * @return mixed
+     */
+    public function __get(string $name):mixed {
+        throw new Exception("No existe la propiedad $name");
     }
 
-    public function __set(string $name, mixed $value) {
-        throw new Exception("No existe la propiedrad $name por lo que no se puede asignar el valor $value");
+    /**
+     * Metodo magico set que es llamado de forma automatica cuando se quiere asignar valor a una variable de la clase exista o no.
+     * La redefinimos para que su uso quede deshabilitado devolviendo un error.
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function __set(string $name, mixed $value):void {
+        throw new Exception("No existe la propiedad $name por lo que no se puede asignar el valor");
     }
 
+    /**
+     * Metodo isset que comprueba si existe una variable en el objeto o no. Devolvemos false para deshabilitarla.
+     *
+     * @param string $name
+     * @return boolean
+     */
     public function __isset(string $name):bool {
         return false;
     }
 
-    public function __unset(string $name) {
+    /**
+     * Metodo unset magico que quita el valor de una variable. Devolvemos un mensaje de error para deshabilitarla.
+     *
+     * @param string $name
+     * @return void
+     */
+    public function __unset(string $name):void {
         throw new Exception("No existe la propiedad $name");
     }
 
