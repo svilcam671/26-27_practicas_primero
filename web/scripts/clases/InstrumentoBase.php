@@ -69,7 +69,7 @@ abstract class InstrumentoBase {
      */
     public function __toString(): string {
         
-        return "Instrumento con descripción ".$this->getDescripcion().", instancia ".$this->_numeroInstancia." de un total de ".self::$_totalInstancia.". Tiene ".$this->getEdad()." años. La clase es ".get_class($this);
+        return "Instrumento con descripción ".$this->getDescripcion().", instancia ".$this->_numeroInstancia." de un total de ".self::$_totalInstancia.". Tiene ".$this->getEdad()." años. La clase es ".get_class($this).".";
     }
 
     /**
