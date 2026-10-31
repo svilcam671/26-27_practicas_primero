@@ -205,6 +205,8 @@ function cuerpo(InstrumentoViento $viento, Flauta $flauta1, Flauta $flauta2, Fla
             foreach ($objeto as $clave => $valor) {
                 echo $clave." => ".$valor."<br>";
             }
+
+            $objeto->_propPrivada="privada";
         }
         catch (Exception $e) {
             echo "<br><strong>ERROR: ".$e->getMessage()."</strong>";
