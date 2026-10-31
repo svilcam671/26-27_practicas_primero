@@ -40,18 +40,25 @@ $persona = Persona::registrarPersona("Sergio", "13/05/2000", "Av La Legion", "An
 // ejercicio 6
 $fibonacci = new SerieFibonacci(10);
 
+// ejercicio 7
+$objeto = new ClaseMisPropiedades();
+$objeto->propPublica="publica";
+//$objeto->_propPrivada="privada";
+$objeto->propiedad1=25;
+$objeto->propiedad2= "cadena de texto";
+
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION RELACION 4", $barra);
-cuerpo($viento, $flauta1, $flauta2, $flauta3, $persona, $fibonacci); //llamo a la vista
+cuerpo($viento, $flauta1, $flauta2, $flauta3, $persona, $fibonacci, $objeto); //llamo a la vista
 finCuerpo();
 // **********************************************************
 //vista
 function cabecera() {}
 //vista
-function cuerpo(InstrumentoViento $viento, Flauta $flauta1, Flauta $flauta2, Flauta $flauta3, Persona $persona, SerieFibonacci $fibonacci)
+function cuerpo(InstrumentoViento $viento, Flauta $flauta1, Flauta $flauta2, Flauta $flauta3, Persona $persona, SerieFibonacci $fibonacci, ClaseMisPropiedades $objeto)
 {
 ?>
    <h2>Prueba Ejercicio 1</h2>
@@ -162,11 +169,13 @@ function cuerpo(InstrumentoViento $viento, Flauta $flauta1, Flauta $flauta2, Fla
     <?php
     
         try {
+            // recorro el iterator de la clase
             echo "Serie de fibonacci con iterator<br>";
             foreach ($fibonacci as $clave => $valor) {
                 echo $clave." => ".$valor."<br>";
             }
 
+            // recorro el generador del metodo de la clase
             echo "------------------------------------------------<br>";
             echo "Serie de fibonacci con generador<br>";
             foreach (SerieFibonacci::fFibonacci(10) as $clave => $valor) {
@@ -182,7 +191,24 @@ function cuerpo(InstrumentoViento $viento, Flauta $flauta1, Flauta $flauta2, Fla
     <h2>Prueba Ejercicio 7</h2>
     <?php
   
+    try {
 
+            // muestro el valor del ejemplo
+            echo "la propiedad 1 vale ".$objeto->propiedad1."<br>";
+            //echo $objeto->propiedad3;
+
+            // recorro dos veces para comprobar que funciona correctamente
+            foreach ($objeto as $clave => $valor) {
+                echo $clave." => ".$valor."<br>";
+            }
+            echo "-----------------------------<br>";
+            foreach ($objeto as $clave => $valor) {
+                echo $clave." => ".$valor."<br>";
+            }
+        }
+        catch (Exception $e) {
+            echo "<br><strong>ERROR: ".$e->getMessage()."</strong>";
+        }
 
     ?>
 
