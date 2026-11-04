@@ -101,3 +101,55 @@ function validaHora(string &$var, string $defecto):bool {
     return $correcto;
 
 }
+
+/**
+ * Funcion que valida una direccion de correo electronico para que cumpla el formato "aaaaa@bbbb.ccc". En caso de que sea correcta devuelve la direccion de correo en minusculas,
+ * por el contrario, si no es valida, se devuelve el valor por defecto.
+ *
+ * @param string $var recibe un string con el correo electronico a validad
+ * @param string $defecto valor por defecto en caso de que la direccion no cumpla el formato
+ * @return boolean devuelve true si el correo es valido y false en caso contrario
+ */
+function validaEmail(string &$var, string $defecto):bool {
+
+    $correcto = false;
+
+    if (preg_match("/^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/", $var)) {
+
+        $correcto = true;
+
+        $var = mb_strtolower($var);
+    
+    }
+    else {
+        $var = $defecto;
+    }
+
+    return $correcto;
+}
+
+/**
+ * Funcion que comprueba si una cadena pasada como variable por referencia es de una longitud como maxima indicada en el parametro longitud. En caso de ser menor o igual
+ * se devuelve true, de lo contrario se devuelve false
+ *
+ * @param string $var cadena pasada como variable por referencia
+ * @param integer $longitud longitud maxima que puede tener la cadena
+ * @param string $defecto valor por defecto que se asigna en caso de que la cadena exceda el limite
+ * @return boolean se devuelve true si la cadena es de longitud menor o igual al maximo indicado, false en caso contrario
+ */
+function validaCadena(string &$var, int $longitud, string $defecto):bool {
+
+    $correcto = false;
+
+    if (mb_strlen($var) <= $longitud) {
+
+        $correcto = true;
+    
+    }
+    else {
+        $var = $defecto;
+    }
+
+    return $correcto;
+}
+
