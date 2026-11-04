@@ -99,5 +99,4 @@ function validaHora(string &$var, string $defecto):bool {
     }
 
     return $correcto;
-
 }
