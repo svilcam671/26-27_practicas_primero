@@ -62,7 +62,7 @@ function validaFecha(string &$var, string $defecto):bool {
     
     $correcto = false;
 
-    if ((preg_match("/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/", $var, $matches) === 1) && (checkdate(intval($matches[2]), intval($matches[1]), intval($matches[3])))) {
+    if ((preg_match("/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/", $var, $matches)) && (checkdate(intval($matches[2]), intval($matches[1]), intval($matches[3])))) {
 
         $correcto = true;
             
@@ -87,7 +87,7 @@ function validaHora(string &$var, string $defecto):bool {
 
     $correcto = false;
 
-    if (preg_match("/^([01]?\d|2[0-3]):([0-5]?\d):([0-5]?\d)$/", $var, $matches) === 1) {
+    if (preg_match("/^([01]?\d|2[0-3]):([0-5]?\d):([0-5]?\d)$/", $var, $matches)) {
 
         $correcto = true;
             
@@ -99,6 +99,7 @@ function validaHora(string &$var, string $defecto):bool {
     }
 
     return $correcto;
+
 }
 
 /**
@@ -152,3 +153,53 @@ function validaCadena(string &$var, int $longitud, string $defecto):bool {
     return $correcto;
 }
 
+/**
+ * Funcion que valida una cadena pasada como variable por referencia en base a la expresion indicada. En caso de que la cumpla
+ * se devolvera true, de lo contrario se asignara el valor por defecto como valor a la variable por referencia y se devolvera false.
+ * @param string $var variable pasada por referencia que contiene una cadena de texto
+ * @param string $expresion expresion dada para comprobar si la cadena la cumple
+ * @param string $defecto valor por defecto para asignar en caso de que no se cumpla la expresion
+ * @return bool se devuelve true si la cadena cumple la expresion indicada y false en caso contrario
+ */
+function validaExpresion(string &$var, string $expresion, string $defecto):bool {
+
+    $correcto = false;
+
+    if (preg_match($expresion, $var)) {
+
+        $correcto = true;
+    
+    }
+    else {
+        $var = $defecto;
+    }
+
+    return $correcto;
+
+}
+
+/**
+ * Funcion que segun el tipo indicado comprueba que el valor pasado sea una clave o un valor dentro del array dado.
+ * Devuelve true si corresponde a una clave o valor y false en caso contrario
+ * @param mixed $var valor pasado para buscar en el array
+ * @param array $posibles array con clave y valor donde buscaremos el valor dado
+ * @param int $tipo tipo 1 indica si vamos a comprobar que sea un valor del array, tipo 2 indica si es una clave del array
+ * @return bool devuelve true si el valor es una clave o valor segun el tipo indicado, false en caso contrario
+ */
+function validaRango(mixed $var, array $posibles, int $tipo=1):bool { 
+
+    $correcto = false;
+
+    if ($tipo === 1 && in_array($var, $posibles)) {
+    
+        $correcto = true;
+    
+    }
+    else if ($tipo === 2 && array_key_exists($var, $posibles)) {
+        
+        $correcto = true;
+    
+    }
+
+    return $correcto;
+}
