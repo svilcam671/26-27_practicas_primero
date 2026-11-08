@@ -8,7 +8,7 @@ body {
 #documento{
     margin: 0 auto;
     background-color: #8ee9bb;
-    width: 700px;
+    width: 900px;
 }
 #cabecera{
     background-color: #14e737;
@@ -55,14 +55,17 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
 }
 
 #barraMenu li {
     display: inline-block;
-    margin-right: 10px;
 }
 
 #barraMenu a {
+    display: inline-block;
     color: #333;
     background-color: #e2e6ea;
     padding: 6px 12px;
@@ -123,9 +126,9 @@ body {
     
 }
 
-.tabla tr.impar{
+/**.tabla tr.impar{
     
-}
+}*/
 
 #pie{
     background-color: #81e714;
