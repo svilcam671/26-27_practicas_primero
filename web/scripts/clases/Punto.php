@@ -1,5 +1,5 @@
 <?php
-
+include_once(RUTABASE . "/scripts/librerias/validacion.php");
 class Punto {
 
     const COLORES = [
@@ -40,6 +40,11 @@ class Punto {
             throw new Exception("Se debe indicar un grosor valido");
         }
         
+    }
+
+    public function __toString(): string{
+        
+        return $this->getX()." ; ".$this->getY()." ; ".$this->getColor()." ; ".$this->getGrosor();
     }
 
 
