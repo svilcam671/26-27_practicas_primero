@@ -1,7 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 include_once(dirname(__FILE__) . "/../../scripts/librerias/validacion.php");
-include_once(dirname(__FILE__) . "/../../scripts/librerias/imagenes.php");
 //controlador
 $barra=[
     [
@@ -24,6 +23,7 @@ $datos = [
 ];
 
 $errores = [];
+$volveracrear = false;
 
 $enviado = isset($_POST["guardar"]);
 
@@ -73,12 +73,17 @@ if ($enviado) {
     if (count($errores) === 0) {
         try {
             $puntos[] = new Punto(intval($datos["x"]), intval($datos["y"]), $datos["color"], intval($datos["grosor"]));
+            $volveracrear = true;
         }
         catch (Exception $e) {
             $errores["error"] = $e->getMessage();
         }
     }
 }
+
+if ($volveracrear || !file_exists(ruta())) {
+    guardarImagen($puntos);
+} 
 
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
@@ -97,9 +102,15 @@ function cuerpo(array $datos, array $errores, array $puntos){
 
     <?php formulario($datos, $errores); ?>
 
-    <h2>Text area con los puntos</h2>
+    <h2>TextArea con los puntos</h2>
 
     <?php textArea($puntos); ?>
+
+    <h2>Imagen</h2>
+
+    <img src="/imagenes/puntos/<?php echo nombreImagen() ?>" alt="Imagen">
+
+
 <?php
 }
 
@@ -176,7 +187,79 @@ function formulario(array $datos, array $errores) {
 function textArea(array $puntos) {  
 ?>
         
-    <textarea name="puntos" id="puntos" rows="10" cols="40"><?php foreach($puntos as $clave) {echo $clave."\n"; }?></textarea>
+    <textarea name="puntos" id="puntos" rows="10" cols="40"><?php foreach($puntos as $punto) {echo $punto."\n"; }?></textarea>
 
 <?php
+}
+
+function crearImagen(array $puntos): GdImage {
+
+    $imagen = imagecreatetruecolor(500, 500);
+    $blanco = imagecolorallocate($imagen, 255, 255, 255);
+    $negro = imagecolorallocate($imagen, 0, 0, 0);
+    imagefill($imagen, 0,0, $blanco);
+    imagerectangle($imagen,0,0,499,499, $negro);
+
+    foreach ($puntos as $punto) {
+
+        dibujarPunto($imagen, $punto);
+    }
+
+    return $imagen;
+
+}
+
+function nombreImagen(): string {
+
+    $ip = $_SERVER["REMOTE_ADDR"];
+    $ip = preg_replace('/[^A-Za-z0-9]/', '_', $ip);
+
+    $navegador = "otro";
+    $agente = $_SERVER["HTTP_USER_AGENT"];
+
+    if (stripos($agente, "firefox") !== false) {
+        $navegador = "firefox";
+    }
+    else if (stripos($agente, "edg") !== false) {
+        $navegador = "edge";
+    }
+    else if (stripos($agente, "opr") !== false) {
+        $navegador = "opera";
+    }
+    else if (stripos($agente, "chrome") !== false) {
+        $navegador = "chrome";
+    }
+    else if (stripos($agente, "safari") !== false) {
+        $navegador = "safari";
+    }
+
+    return "imagen_".$ip."_".$navegador.".jpg";
+
+}
+
+function dibujarPunto(GdImage $imagen, Punto $punto):void {
+
+    $rgb = Punto::COLORES[$punto->getColor()]["rgb"];
+    $color = imagecolorallocate($imagen, $rgb[0], $rgb[1], $rgb[2]);
+    $diametro = $punto->getGrosor()*5;
+
+    imagefilledellipse($imagen, $punto->getX(), $punto->getY(), $diametro, $diametro, $color);
+
+}
+
+function ruta():string {
+
+    return $_SERVER["DOCUMENT_ROOT"]."/imagenes/puntos/".nombreImagen();
+}
+
+function guardarImagen(array $puntos): bool {
+
+    $carpeta = $_SERVER["DOCUMENT_ROOT"]."/imagenes/puntos";
+    if (!file_exists($carpeta)) {
+        mkdir($carpeta);
+    }
+
+    $correcto = imagejpeg(crearImagen($puntos), ruta());
+
+    return $correcto;
 }
