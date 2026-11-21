@@ -30,7 +30,4 @@ include(RUTABASE."/aplicacion/plantilla/plantilla.php");
 
 //creo todos los objetos que necesita mi aplicación
 $puntos = [
-    new Punto(10,10,"red",1),
-    new Punto(50,50,"green",2),
-    new Punto(100,100,"blue",3),
 ];
