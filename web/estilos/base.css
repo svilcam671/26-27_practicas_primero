@@ -150,3 +150,7 @@ body {
     border:thin solid red;
     padding:5px;
 }
+
+textarea {
+    resize: none;
+}

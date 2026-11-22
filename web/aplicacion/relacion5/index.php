@@ -395,3 +395,5 @@ function resumen(array $datos, array $estados, array $estudios) {
     echo "Número de hermanos: ".$datos["hermanos"]."<br>";
     echo "Sueldo: ".$datos["sueldo"]."€";
 }
+
+
