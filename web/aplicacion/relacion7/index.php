@@ -25,16 +25,17 @@ $datos = [
 
 $errores = [];
 $volveracrear = false;
-cargarPuntos($puntos);
-
 
 $enviado = isset($_POST["guardar"]);
+$eliminar = isset($_POST["eliminar"]);
+$subir = isset($_POST["subir"]);
 
 if ($enviado) {
 
     $datos["x"] = isset($_POST["x"])?trim($_POST["x"]):"";
 
-    if (validaExpresion($datos["x"], '/^\d+$/', "0")) {
+    $valorX = $datos["x"];
+    if (validaExpresion($valorX, '/^\d+$/', "0")) {
         $numeroX = intval($datos["x"]);
         $validaX = validaEntero($numeroX,0,500,0);
     }
@@ -48,7 +49,8 @@ if ($enviado) {
 
     $datos["y"] = isset($_POST["y"])?trim($_POST["y"]):"";
 
-    if (validaExpresion($datos["y"], '/^\d+$/', "0")) {
+    $valorY = $datos["y"];
+    if (validaExpresion($valorY, '/^\d+$/', "0")) {
         $numeroY = intval($datos["y"]);
         $validaY = validaEntero($numeroY,0,500,0);
     }
@@ -84,10 +86,88 @@ if ($enviado) {
     }
 }
 
+if ($eliminar) {
+    $borrar = isset($_POST["borrar"])?trim($_POST["borrar"]):"";
+
+    if (validaExpresion($borrar, '/^\d+$/', "") && validaRango($borrar, $puntos, 2)) {
+        unset($puntos[$borrar]);
+        $volveracrear = true;
+    }
+    else {
+        $errores["borrar"] = "* Punto elegido para borrar no valido.";
+    }
+}
+
+if ($subir) {
+
+    if (!isset($_FILES["archivo"]) || $_FILES["archivo"]["error"] !== 0) {
+        $errores["subir"] = "* Archivo seleccionado no valido";
+    }
+    else {
+
+        $arrayNombreArchivo = explode(".", $_FILES["archivo"]["name"]);
+        $extension = $arrayNombreArchivo[count($arrayNombreArchivo)-1];
+
+        if (mb_strtolower($extension) !== "txt") {
+
+            $errores["subir"] = "* La extension debe ser txt";
+        }
+        else {
+
+            $arrayArchivo = file($_FILES["archivo"]["tmp_name"]);
+
+            foreach ($arrayArchivo as $linea) {
+
+                $linea = trim($linea);
+
+                $partes=explode(";",$linea);
+
+                if (count($partes) === 4) {
+
+                    $x = trim($partes[0]);
+                    $y = trim($partes[1]);
+                    $color = trim($partes[2]);
+                    $grosor = trim($partes[3]);
+                    if ((validaExpresion($x, "/^\d+$/", 0)) && (validaExpresion($y, "/^\d+$/", 0)) && (validaExpresion($grosor, "/^\d+$/", 0))) {
+
+                        if ((validaEntero($x, 0, 500, 0)) && (validaEntero($y, 0, 500, 0))) {
+
+                            try {
+                                $punto = new Punto(intval($x), intval($y), $color, intval($grosor));
+                                $puntos[] = $punto;
+                                $volveracrear = true;
+                            }
+                            catch (Exception $e) {
+
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
 if ($volveracrear || !file_exists(ruta())) {
     guardarImagen($puntos);
     guardarPuntos($puntos);
-} 
+}
+
+if ($eliminar && !isset($errores["borrar"])) {
+    header("Location: index.php");
+    exit;
+}
+
+if ($subir && !isset($errores["subir"])) {
+    header("Location: index.php");
+    exit;
+}
 
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
@@ -114,7 +194,23 @@ function cuerpo(array $datos, array $errores, array $puntos){
 
     <img src="/imagenes/puntos/<?php echo nombreImagen() ?>" alt="Imagen">
 
+    <h2>Borrar puntos</h2>
 
+    <?php  
+        if (count($puntos) > 0) {
+            formularioBorrar($puntos, $errores);
+        }
+        else {
+            ?><p>No hay puntos para borrar</p><?php
+        }
+    
+    ?>
+
+    <h2>Descargar imagen</h2>
+    <a href="imagen.php">Descargar</a>
+
+    <h2>Subir fichero</h2>
+    <?php formularioSubir($errores) ?>
 <?php
 }
 
@@ -189,9 +285,56 @@ function formulario(array $datos, array $errores) {
 }
 
 function textArea(array $puntos) {  
-?>
-        
+?>     
     <textarea name="puntos" id="puntos" rows="10" cols="40"><?php foreach($puntos as $punto) {echo $punto."\n"; }?></textarea>
+<?php
+}
+
+function formularioBorrar(array $puntos, array $errores) {
+?>    
+    <form action="index.php" method="post">
+        <select name="borrar" id="borrar">
+            <?php  
+
+                foreach($puntos as $clave => $valor) {
+
+                    ?> 
+                        <option value="<?php echo $clave ?>"><?php echo $valor ?></option>
+                    
+                    <?php
+
+                }
+            ?>
+        </select>
+        <input type="submit" name="eliminar" value="Borrar">
+    </form>
+
+    <?php if (isset($errores["borrar"])) {
+
+            echo '<span class="error">'.$errores["borrar"].'</span>';
+
+        }             
+    ?>
+    
+<?php
+}
+
+function formularioSubir(array $errores) {
+?>
+    <form action="index.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="archivo" id="archivo">
+        <br><br>
+        <input type="submit" name="subir" value="Subir archivo">
+    </form>
+
+    <br>
+    <?php  
+        if (isset($errores["subir"])) {
+
+            echo '<span class="error">'.$errores["subir"].'</span>';
+
+        } 
+    ?>
 
 <?php
 }
@@ -246,36 +389,6 @@ function guardarImagen(array $puntos): bool {
     return $correcto;
 }
 
-function nombreNavegador() {
-    $ip = $_SERVER["REMOTE_ADDR"];
-    $ip = preg_replace('/[^A-Za-z0-9]/', '_', $ip);
-
-    $navegador = "otro";
-    $agente = $_SERVER["HTTP_USER_AGENT"];
-
-    if (stripos($agente, "firefox") !== false) {
-        $navegador = "firefox";
-    }
-    else if (stripos($agente, "edg") !== false) {
-        $navegador = "edge";
-    }
-    else if (stripos($agente, "opr") !== false) {
-        $navegador = "opera";
-    }
-    else if (stripos($agente, "chrome") !== false) {
-        $navegador = "chrome";
-    }
-    else if (stripos($agente, "safari") !== false) {
-        $navegador = "safari";
-    }
-
-    return $ip."_".$navegador;
-}
-
-function nombreFichero() {
-    return "puntos_".nombreNavegador().".dat";
-}
-
 function guardarPuntos(array $puntos) {
 
     $ruta = $_SERVER["DOCUMENT_ROOT"]."/ficheros";
@@ -297,52 +410,5 @@ function guardarPuntos(array $puntos) {
 
     fclose($fic);
 
-    return true;
-}
-
-function cargarPuntos(array &$puntos) {
-
-    $ruta = $_SERVER["DOCUMENT_ROOT"]."/ficheros/".nombreFichero();
-
-    if (!file_exists($ruta)) {
-        return false;
-    }
-
-    $fic = fopen($ruta, "r");
-
-    if (!$fic) {
-        return false;
-    }
-
-    foreach($puntos as $punto => $valor) {
-        unset($puntos[$punto]);
-    }
-
-    while($linea=fgets($fic)) {
-
-        $linea=trim($linea);
-        $datos=explode(";",$linea);
-
-        if (count($datos) === 4) {
-
-            $x = trim($datos[0]);
-            $y = trim($datos[1]);
-            $color = trim($datos[2]);
-            $grosor = trim($datos[3]);
-            if ((validaExpresion($x, "/^\d+$/", 0)) && (validaExpresion($y, "/^\d+$/", 0)) && (validaExpresion($grosor, "/^\d+$/", 0))) {
-
-                try {
-                    $punto = new Punto(intval($x), intval($y), $color, intval($grosor));
-                    $puntos[] = $punto;
-                }
-                catch (Exception $e) {
-
-                }
-
-            }
-        }
-    }
-
-    fclose($fic);
     return true;
 }
