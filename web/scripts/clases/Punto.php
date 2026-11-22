@@ -1,27 +1,46 @@
 <?php
 include_once(RUTABASE . "/scripts/librerias/validacion.php");
+/**
+ * Clase punto para crear puntos
+ */
 class Punto {
 
+    /**
+     * Constante publica con colores 
+     */
     const COLORES = [
         "black" => ["nombre" => "negro", "rgb" => [0,0,0]],
         "red" => ["nombre" => "rojo", "rgb" => [255,0,0]],
         "green" => ["nombre" => "verde", "rgb" => [0,255,0]],
         "blue" => ["nombre" => "azul", "rgb" => [0,0,255]],
-        "white" => ["nombre" => "blanco", "rgb" => [255,255,255]],
+        "yellow" => ["nombre" => "amarillo", "rgb" => [255,255,0]],
         "purple" => ["nombre" => "morado", "rgb" => [157,0,255]],
     ];
 
+    /**
+     * Constate publica con el grosor
+     */
     const GROSORES = [
         1 => "fino",
         2 => "medio",
         3 => "grueso"
     ];
 
+    // propiedades privadas de clase
     private int $_x;
     private int $_y;
     private string $_color;
     private int $_grosor;
 
+    /**
+     * Constructor de punto al que le llegan como parametro la coordenada X, la Y, el color y el grosor del punto.
+     * Comprueba mediante el uso de los setters que sean valores validos, de lo contrario lanza una excepcion.
+     *
+     * @param integer $x entero con el valor de la coordenada X
+     * @param integer $y entero con el valor de la coordenada Y
+     * @param string $color cadena con el nombre del color
+     * @param integer $grosor entero con el valor del grosor
+     */
     public function __construct(int $x, int $y, string $color, int $grosor){
 
         if (!$this->setX($x)) {
@@ -42,12 +61,19 @@ class Punto {
         
     }
 
+    /**
+     * Redefinicion de toString para sacar una cadena con formato "x ; y ; color ; grosor"
+     * Se usara para escribir en el fichero el punto
+     *
+     * @return string devuelve una cadena con el formato "x ; y ; color ; grosor"
+     */
     public function __toString(): string{
         
         return $this->getX()." ; ".$this->getY()." ; ".$this->getColor()." ; ".$this->getGrosor();
     }
 
 
+    // metodos getter y setter
 	public function getX() : int {
 		return $this->_x;
 	}
