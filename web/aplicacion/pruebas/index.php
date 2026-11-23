@@ -41,5 +41,7 @@ function cuerpo()
     <a href="clases.php">Index clases</a>
     <br><br>
     <a href="pruebaFichero.php">Escribir fichero</a>
+    <br><br>
+    <a href="pruebacookies-sesiones.php">Cookies</a>
 <?php
 }
